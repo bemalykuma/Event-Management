@@ -5,6 +5,7 @@ import type { events as eventsTable } from '../../server/db/schema'
 type Event = InferSelectModel<typeof eventsTable>
 
 export type StatusFilter = 'all' | 'upcoming' | 'today' | 'past'
+export type SortOption = 'date_desc' | 'date_asc' | 'registered_desc' | 'registered_asc'
 
 function toDateOnly(d: Date): Date {
     return new Date(d.getFullYear(), d.getMonth(), d.getDate())
@@ -22,6 +23,7 @@ function getEventStatus(event: Event): 'upcoming' | 'today' | 'past' {
 export function useEventFilter() {
     const search = ref('')
     const status = ref<StatusFilter>('all')
+    const sortBy = ref<SortOption>('date_desc')
     const dateRange = ref<{ start: Date | null; end: Date | null }>({
         start: null,
         end: null,
@@ -55,6 +57,21 @@ export function useEventFilter() {
             })
         }
 
+        // Sort
+        result.sort((a, b) => {
+            switch (sortBy.value) {
+                case 'date_desc':
+                    return new Date(b.date).getTime() - new Date(a.date).getTime()
+                case 'date_asc':
+                    return new Date(a.date).getTime() - new Date(b.date).getTime()
+                case 'registered_desc':
+                    return (b.registeredCount ?? 0) - (a.registeredCount ?? 0)
+                case 'registered_asc':
+                    return (a.registeredCount ?? 0) - (b.registeredCount ?? 0)
+                default:
+                    return 0
+            }
+        })
 
         return result
     }
@@ -63,6 +80,7 @@ export function useEventFilter() {
         search,
         status,
         dateRange,
+        sortBy,
         applyFilters,
     }
 }

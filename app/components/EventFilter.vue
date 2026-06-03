@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import type { StatusFilter } from '~/composables/useEventFilter'
+import type { StatusFilter, SortOption } from '~/composables/useEventFilter'
 
 const search = defineModel<string>('search', { default: '' })
 const status = defineModel<StatusFilter>('status', { default: 'all' })
 const dateRange = defineModel<{ start: Date | null; end: Date | null }>('dateRange', {
     default: () => ({ start: null, end: null }),
 })
+const sortBy = defineModel<SortOption>('sortBy', { default: 'sort_by' })
+
 </script>
 
 <template>
@@ -15,9 +17,10 @@ const dateRange = defineModel<{ start: Date | null; end: Date | null }>('dateRan
         <div class="flex flex-row gap-3 items-center justify-between">
 
             <!-- Date Range and Status -->
-            <div class="flex gap-3">
+            <div class="flex flex-row gap-3 items-center w-auto">
                 <DateRangePicker v-model="dateRange" class="w-full sm:w-auto" />
                 <StatusPicker v-model="status" class="w-full sm:w-auto" />
+                <SortPicker v-model="sortBy" class="w-full sm:w-auto" />
             </div>
 
             <!-- Search -->

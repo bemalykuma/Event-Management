@@ -10,7 +10,7 @@ const { data: events, status: fetchStatus } = await useAsyncData<Event[]>(
   () => $fetch('/api/events')
 )
 
-const { search, status, applyFilters } = useEventFilter()
+const { search, status, dateRange, applyFilters } = useEventFilter()
 
 const filteredEvents = computed(() => {
   if (!events.value) return []
@@ -23,7 +23,7 @@ const filteredEvents = computed(() => {
   <h1 class="text-center text-[28px] mb-5 font-bold mt-5">
     All Event
   </h1>
-  <EventFilter v-model:search="search" v-model:status="status" />
+  <EventFilter v-model:search="search" v-model:status="status" v-model:date-range="dateRange" />
 
   <div v-if="fetchStatus === 'pending'" class="flex justify-center mt-10">
     กำลังโหลด...

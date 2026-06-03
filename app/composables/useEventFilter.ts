@@ -22,6 +22,11 @@ function getEventStatus(event: Event): 'upcoming' | 'today' | 'past' {
 export function useEventFilter() {
     const search = ref('')
     const status = ref<StatusFilter>('all')
+    const dateRange = ref<{ start: Date | null; end: Date | null }>({
+        start: null,
+        end: null,
+    })
+
 
     function applyFilters(events: Event[]): Event[] {
         let result = [...events]
@@ -37,12 +42,27 @@ export function useEventFilter() {
             result = result.filter(e => getEventStatus(e) === status.value)
         }
 
+        // Filter by date range
+        if (dateRange.value.start && dateRange.value.end) {
+            const rangeStart = new Date(dateRange.value.start)
+            rangeStart.setHours(0, 0, 0, 0)
+            const rangeEnd = new Date(dateRange.value.end)
+            rangeEnd.setHours(23, 59, 59, 999)
+
+            result = result.filter(e => {
+                const dt = new Date(e.date)
+                return dt >= rangeStart && dt <= rangeEnd
+            })
+        }
+
+
         return result
     }
 
     return {
         search,
         status,
+        dateRange,
         applyFilters,
     }
 }

@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "db:seed": "npx server/db/seed.ts"
   },
   "dependencies": {
     "@lucide/vue": "^1.17.0",
@@ -25,8 +26,7 @@
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.0",
     "vue": "^3.5.34",
-    "vue-router": "^5.0.7",
-    "vue-sonner": "^2.0.9"
+    "vue-router": "^5.0.7"
   },
   "devDependencies": {
     "@types/node": "^25.9.1",

@@ -3,6 +3,7 @@ import type { InferSelectModel } from 'drizzle-orm'
 import type { events as eventsTable } from '~/server/db/schema'
 import { CalendarDays, MapPin, Users, Pencil, Menu, Infinity as InfinityIcon } from '@lucide/vue'
 import { Button } from '@/components/ui/button'
+import { toast } from 'vue-sonner'
 
 type Event = InferSelectModel<typeof eventsTable>
 
@@ -36,6 +37,9 @@ const remaining = computed(() => {
 })
 
 async function onRegistered() {
+    toast.success('ลงทะเบียนสำเร็จ', {
+        duration: 2000,
+    })
     await refresh()
 }
 

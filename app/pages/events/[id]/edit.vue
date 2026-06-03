@@ -4,6 +4,7 @@ import type { events as eventsTable } from '~/server/db/schema'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { toast } from 'vue-sonner'
 
 useHead({
     title: 'Manage Event - GetEvent'
@@ -86,12 +87,18 @@ async function onSave() {
             date: new Date(form.date).toISOString(),
         },
     })
+    toast.success('แก้ไขกิจกรรมสำเร็จ', {
+        duration: 2000,
+    })
     await clearNuxtData(`event-${route.params.id}`)
     router.push(`/events/${route.params.id}`)
 }
 
 async function onDelete() {
     await $fetch(`/api/events/${route.params.id}`, { method: 'DELETE' })
+    toast.success('ลบกิจกรรมสำเร็จ', {
+        duration: 2000,
+    })
     await clearNuxtData(`event-${route.params.id}`)
     router.push('/')
 }

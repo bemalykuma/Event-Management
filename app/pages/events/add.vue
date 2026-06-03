@@ -67,6 +67,9 @@ async function onSave() {
             date: new Date(form.date).toISOString(),   // ส่งเป็น ISO string เดียว
         },
     })
+    toast.success('เพิ่มกิจกรรมสำเร็จ', {
+        duration: 2000,
+    })
 
     await navigateTo(`/events/${created.id}`)
 }

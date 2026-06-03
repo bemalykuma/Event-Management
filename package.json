@@ -19,6 +19,7 @@
     "eslint": "^10.4.1",
     "nuxt": "^4.4.6",
     "postgres": "^3.4.9",
+    "reka-ui": "^2.9.9",
     "shadcn-nuxt": "^2.7.3",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.0",

@@ -105,7 +105,7 @@ async function onDelete() {
 </script>
 
 <template>
-    <div class="w-full mx-auto px-4 md:px-8 xl:px-20 py-6 md:py-8">
+    <div class="w-full mx-auto px-4 xl:px-20 py-6 md:py-8">
         <div class="border-2 border-black rounded-[20px] p-4 md:p-6 xl:p-8 w-full">
             <h1 class="text-2xl font-bold text-center mb-6">
                 Manage Event

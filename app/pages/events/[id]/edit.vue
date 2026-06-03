@@ -89,6 +89,12 @@ async function onSave() {
     await clearNuxtData(`event-${route.params.id}`)
     router.push(`/events/${route.params.id}`)
 }
+
+async function onDelete() {
+    await $fetch(`/api/events/${route.params.id}`, { method: 'DELETE' })
+    await clearNuxtData(`event-${route.params.id}`)
+    router.push('/')
+}
 </script>
 
 <template>
@@ -101,8 +107,7 @@ async function onSave() {
             <div class="flex flex-row gap-6">
                 <!-- Preview -->
                 <div class="flex flex-col items-center gap-2 shrink-0 w-56">
-                    <div
-                        class="w-full max-w-65 aspect-3/4 border-2 border-gray-900 rounded-[13px] overflow-hidden">
+                    <div class="w-full max-w-65 aspect-3/4 border-2 border-gray-900 rounded-[13px] overflow-hidden">
                         <img :src="previewUrl || 'https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg'"
                             class="w-full h-full object-cover" />
                     </div>
@@ -172,9 +177,7 @@ async function onSave() {
 
             <!-- Actions -->
             <div class="flex flex-row justify-between items-center gap-4 mt-8">
-                <Button variant="outline" class=":w-auto text-red-500 border-red-500 hover:bg-red-50">
-                    ลบกิจกรรมนี้
-                </Button>
+                <DeleteEventDialog @confirm="onDelete" />
 
                 <div class="flex flex-row gap-3">
                     <Button variant="outline" class=":w-auto" @click="router.push(`/events/${route.params.id}`)">

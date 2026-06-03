@@ -68,8 +68,8 @@ const formattedDate = computed(() => {
                 </span>
             </div>
 
-            <div class="flex gap-1 mt-2">
-                <NuxtLink :to="`/events/${props.event.id}`" class="flex-1">
+            <div class="flex mt-2">
+                <NuxtLink :to="`/events/${props.event.id}`" class="w-full">
                     <Button
                         class="rounded-[10px] w-full cursor-pointer hover:border-2 hover:border-black hover:bg-transparent hover:text-black">
                         ดูรายละเอียด

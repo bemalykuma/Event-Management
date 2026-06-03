@@ -42,12 +42,12 @@ async function onConfirm(): Promise<void> {
 <template>
     <Dialog v-model:open="open">
         <DialogTrigger as-child>
-            <Button class="rounded-[10px] w-55 text-lg p-6">
+            <Button class="rounded-[10px] w-full sm:w-55 text-base md:text-lg py-5 md:p-6">
                 เข้าร่วมกิจกรรม
             </Button>
         </DialogTrigger>
 
-        <DialogContent class="max-w-md">
+        <DialogContent class="sm:max-w-md">
             <DialogHeader>
                 <DialogTitle>ยืนยันการเข้าร่วม</DialogTitle>
                 <DialogDescription>

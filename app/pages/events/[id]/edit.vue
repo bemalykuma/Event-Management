@@ -105,16 +105,17 @@ async function onDelete() {
 </script>
 
 <template>
-    <div class="w-full mx-auto px-20 py-8">
-        <div class="border-2 border-black rounded-[20px] p-8 w-full">
+    <div class="w-full mx-auto px-4 md:px-8 xl:px-20 py-6 md:py-8">
+        <div class="border-2 border-black rounded-[20px] p-4 md:p-6 xl:p-8 w-full">
             <h1 class="text-2xl font-bold text-center mb-6">
                 Manage Event
             </h1>
 
-            <div class="flex flex-row gap-6">
+            <div class="flex flex-col lg:flex-row gap-6">
                 <!-- Preview -->
-                <div class="flex flex-col items-center gap-2 shrink-0 w-56">
-                    <div class="w-full max-w-65 aspect-3/4 border-2 border-gray-900 rounded-[13px] overflow-hidden">
+                <div class="flex flex-col items-center gap-2 shrink-0 w-full lg:w-56">
+                    <div
+                        class="w-full max-w-65 aspect-3/4 border-2 border-gray-900 rounded-[13px] overflow-hidden">
                         <img :src="previewUrl || 'https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg'"
                             class="w-full h-full object-cover" />
                     </div>
@@ -155,9 +156,9 @@ async function onDelete() {
                         <p v-if="submitted && dateError" class="text-xs text-red-500">{{ dateError }}</p>
                     </div>
 
-                    <!-- Image / Max Participants / Participants -->
-                    <div class="grid grid-cols-3 gap-4">
-                        <div class="flex flex-col gap-1 col-span-2">
+                    <!-- Image / Max / Participants -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="flex flex-col gap-1 md:col-span-2">
                             <label class="text-sm text-gray-500">Image Link</label>
                             <Input v-model="form.imageUrl" placeholder="https://..." />
                         </div>
@@ -183,14 +184,15 @@ async function onDelete() {
             </div>
 
             <!-- Actions -->
-            <div class="flex flex-row justify-between items-center gap-4 mt-8">
+            <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 mt-8">
                 <DeleteEventDialog @confirm="onDelete" />
 
-                <div class="flex flex-row gap-3">
-                    <Button variant="outline" class=":w-auto" @click="router.push(`/events/${route.params.id}`)">
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <Button variant="outline" class="w-full sm:w-auto"
+                        @click="router.push(`/events/${route.params.id}`)">
                         ยกเลิก
                     </Button>
-                    <Button class="w-auto" @click="onSave" :disabled="submitted && hasError">
+                    <Button class="w-full sm:w-auto" @click="onSave" :disabled="submitted && hasError">
                         บันทึก
                     </Button>
                 </div>

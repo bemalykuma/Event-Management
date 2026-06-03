@@ -49,7 +49,7 @@ function clearDate(): void {
     <Popover>
         <PopoverTrigger as-child>
             <Button variant="outline"
-                class="w-full sm:w-50 justify-between text-left font-normal rounded-full border-black border-2">
+                class="w-full sm:w-65 xl:w-50 justify-between text-left font-normal rounded-full border-black border-2">
                 <p>{{ displayText }}</p>
                 <CalendarIcon class="mr-2 h-4 w-4" />
             </Button>

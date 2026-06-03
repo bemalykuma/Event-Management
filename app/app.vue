@@ -7,7 +7,7 @@ import { Toaster } from '@/components/ui/sonner'
 <template>
   <Toaster />
   <Navbar />
-  <div class="px-20 font-sans pb-5">
+  <div class="xl:px-20 px-2 lg:px-10 font-sans">
     <NuxtPage />
   </div>
 </template>

@@ -49,7 +49,7 @@ watch([search, status, sortBy, dateRange], () => {
 
   <template v-else>
     <!-- Cards -->
-    <div class="grid grid-cols-6 gap-4 mt-5 justify-items-center ">
+    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 mt-5 justify-items-center lg:grid-cols-6">
       <CardEvent v-for="event in paginatedEvents" :key="event.id" :event="event" />
     </div>
 

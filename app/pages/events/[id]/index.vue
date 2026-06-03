@@ -58,7 +58,7 @@ useHead({
         เกิดข้อผิดพลาด
     </div>
 
-    <div v-if="event" class="w-full mx-auto px-20 py-8">
+    <div v-if="event" class="w-full mx-auto px-4 md:px-8 xl:px-20 py-6 md:py-8">
         <!-- Breadcrumb -->
         <div class="text-sm text-gray-500 mb-4 flex flex-wrap">
             <NuxtLink to="/" class="hover:underline">หน้าหลัก</NuxtLink>
@@ -67,7 +67,7 @@ useHead({
         </div>
 
         <!-- Main Card -->
-        <div class="border-2 border-black rounded-[20px] p-5 flex relative flex-row gap-5 w-full">
+        <div class="border-2 border-black rounded-[20px] p-4 md:p-5 flex flex-col relative md:flex-row gap-5 w-full">
             <!-- Menu -->
             <div class="absolute top-4 right-4 flex justify-end">
                 <button @click="menuOpen = !menuOpen" class="p-2 rounded-md hover:bg-gray-100 cursor-pointer">
@@ -87,30 +87,30 @@ useHead({
 
             <!-- Image -->
             <img :src="event.imageUrl ?? 'https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg'"
-                :alt="event.name" class="w-72 aspect-3/4 object-cover rounded-[12px] shrink-0" />
+                :alt="event.name" class="w-full lg:w-72 aspect-3/4 object-cover rounded-[12px] shrink-0 md:w-50" />
 
             <!-- Content -->
-            <div class="flex flex-col flex-1 gap-2 min-w-0 pt-15">
-                <h1 class="text-3xl font-bold leading-snug wrap-break-word">
+            <div class="flex flex-col flex-1 gap-2 min-w-0 lg:pt-15 md:pt-8">
+                <h1 class="text-2xl md:text-2xl lg:text-3xl font-bold leading-snug wrap-break-word">
                     {{ event.name }}
                 </h1>
 
                 <!-- Date -->
-                <div class="flex items-start gap-2 text-gray-600 text-base mt-3">
+                <div class="flex items-start gap-2 text-gray-600 text-sm md:text-base mt-3">
                     <CalendarDays class="w-5 h-5 shrink-0 mt-0.5" />
                     <span class="wrap-break-word">{{ formattedDate }}</span>
                 </div>
 
                 <!-- Location -->
-                <div class="flex items-start gap-2 text-gray-600 text-base mt-2">
+                <div class="flex items-start gap-2 text-gray-600 text-sm md:text-base mt-2">
                     <MapPin class="w-5 h-5 shrink-0 mt-0.5" />
                     <span class="wrap-break-word">{{ event.location }}</span>
                 </div>
 
                 <!-- Bottom -->
-                <div class="flex flex-col items-end justify-between gap-4 mt-auto pt-6">
+                <div class="flex flex-col sm:items-end sm:justify-between gap-4 mt-auto pt-6">
                     <!-- Participants -->
-                    <div class="flex items-center gap-2 text-base">
+                    <div class="flex items-center gap-2 text-sm md:text-base">
                         <Users class="w-4 h-4 text-black shrink-0" />
                         <span class="text-black font-medium flex items-center gap-1">
                             จำนวนผู้เข้าร่วม {{ event.registeredCount ?? 0 }} /
@@ -119,9 +119,9 @@ useHead({
                         </span>
                     </div>
 
-                    <!-- Register Button -->
-                    <div :style="remaining <= 0 ? 'cursor: no-drop' : ''" class="w-auto">
-                        <Button v-if="remaining <= 0" class="rounded-[10px] w-55 text-lg py-5 p-6" :disabled="true">
+                    <div :style="remaining <= 0 ? 'cursor: no-drop' : ''" class="w-full sm:w-auto">
+                        <Button v-if="remaining <= 0"
+                            class="rounded-[10px] w-full sm:w-55 text-base md:text-lg py-5 md:p-6" :disabled="true">
                             ผู้เข้าร่วมเต็มแล้ว
                         </Button>
 
@@ -134,7 +134,7 @@ useHead({
 
         <!-- Description -->
         <div v-if="event.description"
-            class="mt-6 border rounded-[12px] p-5 text-gray-700 leading-relaxed text-base whitespace-pre-wrap wrap-break-word">
+            class="mt-6 border rounded-[12px] p-4 md:p-5 text-gray-700 leading-relaxed text-sm md:text-base whitespace-pre-wrap wrap-break-word">
             {{ event.description }}
         </div>
     </div>

@@ -35,6 +35,10 @@ const remaining = computed(() => {
     return event.value.maxParticipants - (event.value.registeredCount ?? 0)
 })
 
+useHead({
+    title: `${event.value?.name} - GetEvent`
+})
+
 </script>
 
 <template>

@@ -10,7 +10,7 @@ const menuOpen = ref(false)
 const router = useRouter()
 const route = useRoute()
 
-const { data: event, status, error } = await useAsyncData<Event>(
+const { data: event, status, error, refresh } = await useAsyncData<Event>(
     `event-${String(route.params.id)}`,
     () => $fetch(`/api/events/${String(route.params.id)}`),
     { getCachedData: () => undefined }
@@ -34,6 +34,10 @@ const remaining = computed(() => {
     if (event.value.maxParticipants === null) return Infinity
     return event.value.maxParticipants - (event.value.registeredCount ?? 0)
 })
+
+async function onRegistered() {
+    await refresh()
+}
 
 useHead({
     title: `${event.value?.name} - GetEvent`
@@ -116,9 +120,9 @@ useHead({
                         <Button v-if="remaining <= 0" class="rounded-[10px] w-55 text-lg py-5 p-6" :disabled="true">
                             ผู้เข้าร่วมเต็มแล้ว
                         </Button>
-                        <Button v-else class="rounded-[10px] w-55 text-lg py-5 p-6">
-                            เข้าร่วมกิจกรรม
-                        </Button>
+
+                        <!-- ส่ง eventId และ listen @registered -->
+                        <RegisterDialog v-else :event-id="String(route.params.id)" @registered="onRegistered" />
                     </div>
                 </div>
             </div>

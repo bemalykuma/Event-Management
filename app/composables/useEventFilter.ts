@@ -7,6 +7,8 @@ type Event = InferSelectModel<typeof eventsTable>
 export type StatusFilter = 'all' | 'upcoming' | 'today' | 'past'
 export type SortOption = 'date_desc' | 'date_asc' | 'registered_desc' | 'registered_asc'
 
+export const ITEMS_PER_PAGE = 6
+
 function toDateOnly(d: Date): Date {
     return new Date(d.getFullYear(), d.getMonth(), d.getDate())
 }

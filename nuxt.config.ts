@@ -37,5 +37,8 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', href: '/icon.png' }
       ]
     }
+  },
+  build: {
+    transpile: ['vue-sonner']
   }
 })
